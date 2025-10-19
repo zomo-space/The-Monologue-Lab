@@ -1,0 +1,6 @@
+title: Zomo Space
+baseurl: ""     # 若部署到子路径（如 /repo），改为 /repo
+url: ""         # GitHub Pages 会覆盖
+markdown: kramdown
+exclude:
+  - .github
