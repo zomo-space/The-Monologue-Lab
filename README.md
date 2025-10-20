@@ -1,3 +1,8 @@
+---
+layout: default
+title: The-Monologue-Lab
+---
+
 # The-Monologue-Lab
 ## 目标
 剖析自己，慢慢沉淀，愿每个来临的机会都恰巧碰上准备好的自己！
