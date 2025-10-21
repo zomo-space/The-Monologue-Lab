@@ -6,7 +6,7 @@ permalink: /ai/
 
 # AI 学习
 
-下面为 ai 目录下的页面与文件列表（优先显示带 title 的页面）：
+笔记列表：
 
 <ul>
   {%- assign pages_list = site.pages | where_exp: "p", "p.path contains 'ai/'" | sort: "title" -%}

@@ -6,7 +6,7 @@ permalink: /system/
 
 # 系统技术
 
-下面为 system 目录下的页面与文件列表（优先显示带 title 的页面）：
+<a href="{{ '/README.html' | relative_url }}">README</a>
 
 <ul>
   {%- assign pages_list = site.pages | where_exp: "p", "p.path contains 'system/'" | sort: "title" -%}
