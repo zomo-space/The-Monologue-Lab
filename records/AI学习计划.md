@@ -5,6 +5,13 @@
 所以，我又想了一下我在AI方面自己要学习并掌握内容，并且采用费曼学习法，输出自己的理解，原则是：
 <p style="text-indent:2em">只记录自己的理解，不做原文摘要、笔记</p>
 
+## 大模型的全链路实践
+先从minimind开始把大模型训练、推理相关环节实践一下。
+minimind项目：https://github.com/jingyaogong/minimind?tab=readme-ov-file
+实践之后，readme中有全流程知识点的简要介绍。
+
+在看minimind代码过程中，可以参考项目https://github.com/gptai4/minimind/blob/master/，项目中对minimind之前的版本有很多注释，对于python语言不熟悉的很有帮助。
+
 ## 大模型相关基础
 这里的学习思路是从按照B站、Youtube上面的视频课程学习，目标快速构建基础，并识别后面几个领域的关键学习点。
 主要课程和资料如下：
