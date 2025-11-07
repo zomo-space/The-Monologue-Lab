@@ -6,7 +6,7 @@ permalink: /records/
 
 # 零零碎碎
 
-<a href="{{ '/README.html' | relative_url }}">README</a>
+笔记列表：
 
 <ul>
   {%- assign pages_list = site.pages | where_exp: "p", "p.path contains 'records/'" | sort: "title" -%}

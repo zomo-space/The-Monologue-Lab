@@ -6,7 +6,7 @@ permalink: /system/
 
 # 系统技术
 
-<a href="{{ '/README.html' | relative_url }}">README</a>
+笔记列表：
 
 <ul>
   {%- assign pages_list = site.pages | where_exp: "p", "p.path contains 'system/'" | sort: "title" -%}
