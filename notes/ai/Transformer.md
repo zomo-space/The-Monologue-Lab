@@ -113,8 +113,11 @@ Q\K\V 计算过程
 
 每个注意力头均会处理整个输入矩阵，处理后输出的向量维度为`hidden_dim=embedding_dim / num_heads`。
 
-每个注意力头分别计算注意力$Attention(Q,K,V)=softmax(\frac{Q*K^T}{\sqrt{K_dim}})*V$
-多个注意力头的注意力输入拼接，再通过线性变化得到多头自注意力的最终输出，即$Output=[\begin{matrix} Attention_1 & Attention_2... & Attention_n \end{matrix}]*[\begin{matrix}W^o\end{matrix}]$。
+每个注意力头分别计算注意力$Attention(Q,K,V)=softmax(\frac{Q*K^T}{\sqrt{K_dim}})*V$。
+
+多个注意力头的注意力输入拼接，再通过线性变化得到多头自注意力的最终输出，即
+
+$$Output=[\begin{matrix} Attention_1 & Attention_2... & Attention_n \end{matrix}]*[\begin{matrix}W^o\end{matrix}]$$
 
 - **本质上，注意力计算的过程中，$Q*K^T$计算了在当前注意力头的关注的特征维度上，每个Token和所有Token的关联关系**
 
