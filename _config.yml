@@ -2,5 +2,8 @@ title: Zomo Space
 baseurl: "/The-Monologue-Lab"
 url: "https://zomo-space.github.io"
 markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
 exclude:
   - .github

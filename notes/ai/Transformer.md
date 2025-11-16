@@ -61,6 +61,19 @@ Embedding计算实际上是把词表中所有的Token_id映射到d维向量空�
 ## 2.2 训练过程
 对于1个batch的输入，在转换为嵌入词向量并叠加位置编码之后，最终生成形状为`batch_size*input_token_length*embedding_dim`的张量。
 
+Batch中每个样本的Token序列会并行训练，也就是说对于一个样本的Token序列，所有位置会并行计算输出，然后反向传播调整模型参数。
+
+Token序列并行时，会输入整个Token序列并行计算所有注意力，同时使用掩码机制遮挡后续Token相关信息，使得每个位置的Token在训练中只能关注其前序Token，通过这种方式并行计算所有位置的输出，并进行参数调整。
+- 一次性将样本的整个Token序列输入模型；
+- 通过矩阵运算，同时计算所有token的Query、Key、Value；
+- 对每个位置设置后续信息掩码，并行计算所有位置的注意力输出；
+  - 因果掩码，Causal Mask，本质上就是遮挡矩阵上三角，将矩阵变为下三角矩阵；
+- 同时通过前馈网络得到所有位置的输出；
+
+**可并行训练是Transformer架构的核心创新点之一，这使得Transformer模型在训练过程中可以通过并行样本Token序列的每个位置，极大的提升时间效率。**
+
+反观RNN，在训练过程中，输出第N+1个Token的训练依赖第N个Token和上一时间步的隐藏状态，其中隐藏状态持续更新，用于编码前序Token序列的信息。训练过程中轮次间的隐藏状态依赖，造成了时间上的强制约束，导致RNN只能顺序训练，无法通过并行的方式加速训练过程。
+
 TODO Transformer的结构和处理整体过程
 
 
@@ -94,12 +107,16 @@ Q\K\V 计算过程
 
 `K=Xi*Wk`
 
-`V=Xi*Wv`，$W_V$比较大（`embedding_dim*embedding_dim`），通常分解成两个矩阵（$V_{up}$和$V_{down}$）相乘来优化存储空间，$V_{up}$被当做$W_V$（`hidden_dim*embedding_dim`），而所有$V_{down}$整合在一起称作输出矩阵
+`V=Xi*Wv`，$W_V$比较大（`embedding_dim*embedding_dim`），通常分解成两个矩阵（$V_{up}$和$V_{down}$）相乘来优化存储空间，$V_{up}$被当做$W_V$（`hidden_dim*embedding_dim`），而所有$V_{down}$整合在一起称作输出矩阵。
+
+
 
 每个注意力头均会处理整个输入矩阵，处理后输出的向量维度为`hidden_dim=embedding_dim / num_heads`。
 
 每个注意力头分别计算注意力$Attention(Q,K,V)=softmax(\frac{Q*K^T}{\sqrt{K_dim}})*V$
 多个注意力头的注意力输入拼接，再通过线性变化得到多头自注意力的最终输出，即$Output=[\begin{matrix} Attention_1 & Attention_2... & Attention_n \end{matrix}]*[\begin{matrix}W^o\end{matrix}]$。
+
+- **本质上，注意力计算的过程中，$Q*K^T$计算了在当前注意力头的关注的特征维度上，每个Token和所有Token的关联关系**
 
 2. 残差连接与归一化：多头注意力输出叠加输入X，进行层归一化；
 这里的归一化是后归一化，即在处理之后进行归一化，也可以选择预归一化，即先归一化再进入子层，GPT通常选择预归一化策略；
