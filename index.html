@@ -5,7 +5,16 @@ title: Zomo Space
 <h1>欢迎来到 Zomo Space！</h1>
 <p>独白之地，没有回声，一切交给时间。</p>
 
-<p>
-  <a class="readme-link" href="{{ '/README.html' | relative_url }}">README</a>
-</p>
+<ul>
+  {%- assign all_pages = site.pages | where_exp: "p", "p.path contains 'notes/ai/' or p.path contains 'notes/system/' or p.path contains 'records/'" -%}
+  {%- assign sorted_pages = all_pages | sort: "modified_time" | reverse -%}
+  {%- for p in sorted_pages -%}
+    <li>
+      <a href="{{ p.url | relative_url }}">{{ p.title | default: p.basename }}</a>
+      <span style="color:#888;font-size:0.9em;">（{{ p.modified_time | date: "%Y-%m-%d %H:%M" }}）</span>
+    </li>
+  {%- endfor -%}
+</ul>
+
+
 <!-- 可在这里继续添加首页摘要或链接 -->
