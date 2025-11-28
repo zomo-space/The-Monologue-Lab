@@ -5,12 +5,6 @@
   --muted:#9fb3d6;
   --container-width:1200px;
 }
-.container{
-  max-width:var(--container-width);
-  margin:40px auto;
-  padding:24px;
-  width:90vw; /* 新增，让宽度更自适应 */
-}
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -19,7 +13,12 @@ body{
   color:var(--text);
   -webkit-font-smoothing:antialiased;
 }
-.container{max-width:var(--container-width);margin:40px auto;padding:24px}
+.container{
+  max-width:var(--container-width);
+  margin:40px auto;
+  padding:24px;
+  width:90vw; /* 新增，让宽度更自适应 */
+}
 .site-header{background:transparent;padding:16px 0}
 .brand{font-weight:700;color:var(--text);text-decoration:none;font-size:1.25rem;margin-right:16px}
 .nav a{color:var(--muted);text-decoration:none;margin-left:12px}
