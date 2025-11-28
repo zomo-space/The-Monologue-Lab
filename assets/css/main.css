@@ -3,7 +3,7 @@
   --accent:#60a5fa;
   --text:#e6eef8;
   --muted:#9fb3d6;
-  --container-width:1200px;
+  --container-width:1600px;
 }
 *{box-sizing:border-box}
 body{
@@ -17,7 +17,7 @@ body{
   max-width:var(--container-width);
   margin:40px auto;
   padding:24px;
-  width:90vw; /* 新增，让宽度更自适应 */
+  width:100vw; /* 新增，让宽度更自适应 */
 }
 .site-header{background:transparent;padding:16px 0}
 .brand{font-weight:700;color:var(--text);text-decoration:none;font-size:1.25rem;margin-right:16px}
