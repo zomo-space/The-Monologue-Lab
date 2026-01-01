@@ -1,4 +1,4 @@
-# [25.11.8]LLM模型训练计算过程
+# [25.11.8] LLM模型训练计算过程
 
 ![Transformer](images/Transformer_1024.jpg){:style="max-width:1600px;width:100%;"}
 
