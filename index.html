@@ -1,13 +1,10 @@
 ---
 layout: default
-title: Zomo Space 独白之地，没有回声，一切交给时间
+title: Zomo Space 没有回声，交给时间
 ---
 <h2>文章列表</h2>
 
 <ul>
-  {%- assign ai_pages = site.pages | where_exp: "p", "p.path contains 'notes/ai/'" -%}
-  {%- assign sys_pages = site.pages | where_exp: "p", "p.path contains 'notes/system/'" -%}
-  {%- assign rec_pages = site.pages | where_exp: "p", "p.path contains 'records/'" -%}
   {%- assign all_pages = ai_pages | concat: sys_pages | concat: rec_pages -%}
   {%- assign sorted_pages = all_pages | sort: "modified_time" | reverse -%}
   {%- for p in sorted_pages -%}
