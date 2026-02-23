@@ -1,7 +1,6 @@
 # [25.11.8] LLM模型训练计算过程
 
-![Transformer](images/Transformer_1024.jpg){:style="max-width:1600px;width:100%;"}
-
+![Transformer](images/Transformer_1024.jpg)
 
 ## 零、分词处理
 词表有很多种方法可以生成，不同方法由于对词的切分、排序逻辑有差异，在词表长度、粒度、内容等方面均有差异，常见的拆分策略有按词、按字符、按子词。
